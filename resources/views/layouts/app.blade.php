@@ -477,7 +477,7 @@
                                 <div class="user-dropdown absolute right-0 top-full mt-2 w-48 bg-white text-gray-700 rounded-lg shadow-xl border border-gray-200" 
                                      id="user-dropdown">
                                     <div class="py-2">
-                                        <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors">
+                                        <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors">
                                             <i class="fas fa-user ml-2"></i>الملف الشخصي
                                         </a>
                                         <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors">

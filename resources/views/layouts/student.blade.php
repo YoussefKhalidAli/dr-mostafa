@@ -216,13 +216,13 @@
 
                         <!-- يمين -->
                         <div class="flex items-center space-x-2 sm:space-x-4 space-x-reverse">
-                            <button class="relative hover:bg-white/20 p-2 rounded-lg transition">
+                            {{-- <button class="relative hover:bg-white/20 p-2 rounded-lg transition">
                                 <i class="fas fa-bell text-lg sm:text-xl"></i>
                                 <span class="notification-badge absolute -top-1 -right-1 bg-accent-500 text-white text-xs rounded-full h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center font-bold shadow-lg">3</span>
-                            </button>
+                            </button> --}}
                             <div class="flex items-center">
                                 <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/20 flex items-center justify-center ml-2">
-                                    <i class="fas fa-user text-xs sm:text-sm text-accent-400"></i>
+                                   <a href="{{ route('profile.edit') }}"><i class="fas fa-user text-xs sm:text-sm text-accent-400"></i></a> 
                                 </div>
                                 <span class="font-medium text-sm sm:text-base hidden sm:inline">مرحباً، {{ Auth::user()->name ?? 'طالب' }}</span>
                                 <span class="font-medium text-sm sm:hidden">{{ Auth::user()->name ?? 'طالب' }}</span>

@@ -38,7 +38,7 @@
 
                     <!-- قائمة منسدلة -->
                     <div class="absolute right-0 mt-2 w-40 bg-white text-gray-700 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition">
-                        <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">الملف الشخصي</a>
+                        <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm hover:bg-gray-100">الملف الشخصي</a>
                         <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">الإعدادات</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

@@ -102,7 +102,7 @@
                                 <td class="px-4 py-2">{{ $assignment->assignment_title }}</td>
                                 <td class="px-4 py-2">{{ \Carbon\Carbon::parse($assignment->created_at)->diffForHumans() }}</td>
                                 <td class="px-4 py-2">
-                                    <a href="{{ route('assignments.answers.grade', $assignment->id) }}" class="text-blue-600 hover:text-blue-800 text-sm">
+                                    <a href="{{ route('answers.show', $assignment->id) }}" class="text-blue-600 hover:text-blue-800 text-sm">
                                         تصحيح الواجب
                                     </a>
                                 </td>
