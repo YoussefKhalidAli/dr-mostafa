@@ -6,6 +6,7 @@
     <title>منصة الدكتور مصطفى طنطاوي</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap');
         
@@ -165,7 +166,7 @@
             <a href="#" class="hover:text-yellow-300 transition">الرئيسية</a>
             <a href="#" class="hover:text-yellow-300 transition">الدروس</a>
             <a href="#" class="hover:text-yellow-300 transition">المكتبة</a>
-            <a href="#" class="hover:text-yellow-300 transition">اتصل بنا</a>
+            <a href="#contact-section" class="hover:text-yellow-300 transition">اتصل بنا</a>
         </div>
         <button class="md:hidden text-xl" id="mobileMenuButton">
             <i class="fas fa-bars"></i>
@@ -176,7 +177,7 @@
             <a href="#" class="py-2 px-4 hover:bg-sky-600 rounded">الرئيسية</a>
             <a href="#" class="py-2 px-4 hover:bg-sky-600 rounded">الدروس</a>
             <a href="#" class="py-2 px-4 hover:bg-sky-600 rounded">المكتبة</a>
-            <a href="#" class="py-2 px-4 hover:bg-sky-600 rounded">اتصل بنا</a>
+            <a href="#contact-section" class="py-2 px-4 hover:bg-sky-600 rounded">اتصل بنا</a>
         </div>
     </nav>
 
@@ -345,6 +346,57 @@
                 </div>
             </div>
         </section>
+
+        <!-- CONTACT FORM -->
+        <section id="contact-section" class="w-full max-w-4xl mb-20">
+            <h2 class="text-3xl font-bold text-center mb-8">اتصل بنا</h2>
+
+            <div class="bg-white/10 backdrop-blur-md rounded-3xl p-6 md:p-10 shadow-lg w-full">
+                <form id="contact-form" class="grid grid-cols-1 md:grid-cols-2 gap-4" novalidate>
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="col-span-1">
+                        <label class="block mb-2 text-sm font-medium">الاسم</label>
+                        <input type="text" name="name" id="name" required
+                            class="w-full px-4 py-3 rounded-lg bg-white/10 placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/20">
+                        <p class="mt-1 text-xs text-red-300 hidden" id="error-name"></p>
+                    </div>
+
+                    <div class="col-span-1">
+                        <label class="block mb-2 text-sm font-medium">رقم الهاتف (اختياري)</label>
+                        <input type="text" name="phone" id="phone"
+                            class="w-full px-4 py-3 rounded-lg bg-white/10 placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/20">
+                        <p class="mt-1 text-xs text-red-300 hidden" id="error-phone"></p>
+                    </div>
+
+                    <div class="col-span-1 md:col-span-2">
+                        <label class="block mb-2 text-sm font-medium">عنوان الرسالة</label>
+                        <input type="text" name="title" id="title" required
+                            class="w-full px-4 py-3 rounded-lg bg-white/10 placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/20">
+                        <p class="mt-1 text-xs text-red-300 hidden" id="error-title"></p>
+                    </div>
+
+                    <div class="col-span-1 md:col-span-2">
+                        <label class="block mb-2 text-sm font-medium">محتوى الرسالة</label>
+                        <textarea name="content" id="content" rows="6" required
+                            class="w-full px-4 py-3 rounded-lg bg-white/10 placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/20"></textarea>
+                        <p class="mt-1 text-xs text-red-300 hidden" id="error-content"></p>
+                    </div>
+
+                    <div class="col-span-1 md:col-span-2 flex items-center justify-center">
+                        <button type="submit" id="contact-submit"
+                            class="px-6 py-3 bg-yellow-400 text-sky-900 font-semibold rounded-2xl shadow-lg hover:scale-105 transition transform duration-200">
+                            <i class="fas fa-paper-plane ml-2"></i> إرسال الرسالة
+                        </button>
+                    </div>
+
+                    <div class="col-span-1 md:col-span-2">
+                        <div id="contact-success" class="hidden p-4 rounded-lg bg-green-600/80 text-white text-center"></div>
+                        <div id="contact-fail" class="hidden p-4 rounded-lg bg-red-600/80 text-white text-center"></div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
     </main>
 
     <!-- الفاصل الزخرفي -->
@@ -438,6 +490,90 @@
                     !mobileMenu.contains(event.target) && 
                     !mobileMenuButton.contains(event.target)) {
                     mobileMenu.classList.remove('active');
+                }
+            });
+
+            // Contact form handling
+            const contactForm = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('contact-submit');
+            const successBox = document.getElementById('contact-success');
+            const failBox = document.getElementById('contact-fail');
+            const errors = {
+                name: document.getElementById('error-name'),
+                phone: document.getElementById('error-phone'),
+                title: document.getElementById('error-title'),
+                content: document.getElementById('error-content'),
+            };
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            const postUrl = "{{ route('contact.store') }}";
+
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                // clear previous
+                successBox.classList.add('hidden'); failBox.classList.add('hidden');
+                Object.values(errors).forEach(n => { n.classList.add('hidden'); n.textContent = ''; });
+
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin ml-2"></i> جارٍ الإرسال';
+
+                const payload = {
+                    name: document.getElementById('name').value.trim(),
+                    phone: document.getElementById('phone').value.trim(),
+                    title: document.getElementById('title').value.trim(),
+                    content: document.getElementById('content').value.trim(),
+                };
+
+                try {
+                    const res = await fetch(postUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken,
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const data = await res.json();
+
+                    if (res.ok && data.success) {
+                        successBox.textContent = data.message || 'تم إرسال رسالتك بنجاح.';
+                        successBox.classList.remove('hidden');
+                        // clear form
+                        contactForm.reset();
+                    } else if (res.status === 422) {
+                        // validation errors
+                        const json = data;
+                        const v = json.errors || json;
+                        if (v.name) {
+                            errors.name.textContent = v.name[0] || v.name;
+                            errors.name.classList.remove('hidden');
+                        }
+                        if (v.phone) {
+                            errors.phone.textContent = v.phone[0] || v.phone;
+                            errors.phone.classList.remove('hidden');
+                        }
+                        if (v.title) {
+                            errors.title.textContent = v.title[0] || v.title;
+                            errors.title.classList.remove('hidden');
+                        }
+                        if (v.content) {
+                            errors.content.textContent = v.content[0] || v.content;
+                            errors.content.classList.remove('hidden');
+                        }
+                        failBox.textContent = 'برجاء تصحيح الأخطاء الظاهرة أعلاه.';
+                        failBox.classList.remove('hidden');
+                    } else {
+                        failBox.textContent = data.message || 'حدث خطأ أثناء الإرسال، حاول لاحقاً.';
+                        failBox.classList.remove('hidden');
+                    }
+                } catch (err) {
+                    console.error(err);
+                    failBox.textContent = 'حدث خطأ في الاتصال. تأكد من اتصالك بالإنترنت.';
+                    failBox.classList.remove('hidden');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane ml-2"></i> إرسال الرسالة';
                 }
             });
         });

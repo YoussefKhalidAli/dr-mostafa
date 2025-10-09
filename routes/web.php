@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 // Dashboard Routes
-Route::get('teacher/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('teacher/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'role:teacher'])->name('dashboard');
 // Route::get('/', view('welcome'));
 
 // Authentication Routes
@@ -228,4 +228,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/lessons/{lesson}/video', [LessonController::class, 'streamVideo'])
         ->name('lessons.video');
 });
+
+use App\Http\Controllers\ContactController;
+Route::post('/teacher/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::prefix('/teacher/contact')->name('teacher.contact.')->middleware(['auth', 'role:teacher'])->group(function () {
+    Route::get('/', [ContactController::class, 'index'])->name('index');
+    Route::get('/{id}', [ContactController::class, 'show'])->name('show');
+    Route::delete('/{id}', [ContactController::class, 'destroy'])->name('destroy');
+});
+
 require __DIR__.'/auth.php';

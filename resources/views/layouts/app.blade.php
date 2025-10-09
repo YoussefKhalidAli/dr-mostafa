@@ -282,71 +282,79 @@
                 
                 <!-- قائمة التنقل -->
                 <nav class="py-4">
-                    <div class="px-4 py-2 text-xs font-semibold text-white/60 uppercase tracking-wide">القائمة الرئيسية</div>
-                    
-                    <a href="{{ route('dashboard') }}" 
-                       class="flex items-center px-4 py-3 mt-1 transition-all duration-200 focus-ring {{ request()->routeIs('dashboard') ? 'bg-white/10 border-r-4 border-yellow-400' : 'hover:bg-white/10' }}">
-                        <i class="fas fa-home ml-3 w-5"></i>
-                        <span>لوحة التحكم</span>
-                    </a>
-                    
-                    <a href="{{ route('courses.index') }}" 
-                       class="flex items-center px-4 py-3 mt-1 transition-all duration-200 focus-ring {{ request()->routeIs('courses.*') ? 'bg-white/10 border-r-4 border-yellow-400' : 'hover:bg-white/10' }}">
-                        <i class="fas fa-book ml-3 w-5"></i>
-                        <span>الدورات</span>
-                    </a>
-                    
-                    <a href="{{ route('lessons.index') }}" 
-                       class="flex items-center px-4 py-3 mt-1 transition-all duration-200 focus-ring {{ request()->routeIs('lessons.*') ? 'bg-white/10 border-r-4 border-yellow-400' : 'hover:bg-white/10' }}">
-                        <i class="fas fa-book ml-3 w-5"></i>
-                        <span>الدروس</span>
-                    </a>
-                    
-                    <a href="{{ route('sessions.index') }}" 
-                       class="flex items-center px-4 py-3 mt-1 transition-all duration-200 focus-ring {{ request()->routeIs('sessions.*') ? 'bg-white/10 border-r-4 border-yellow-400' : 'hover:bg-white/10' }}">
-                        <i class="fas fa-video ml-3 w-5"></i>
-                        <span>الحصص</span>
-                    </a>
-                    
-                    <a href="{{ route('teacher.groups.index') }}" 
-                       class="flex items-center px-4 py-3 mt-1 transition-all duration-200 focus-ring {{ request()->routeIs('teacher.groups.*') ? 'bg-white/10 border-r-4 border-yellow-400' : 'hover:bg-white/10' }}">
-                        <i class="fas fa-users ml-3 w-5"></i>
-                        <span>المجموعات</span>
-                    </a>
-                    
-                    <a href="{{ route('exams.index') }}" 
-                       class="flex items-center px-4 py-3 mt-1 transition-all duration-200 focus-ring {{ request()->routeIs('exams.*') ? 'bg-white/10 border-r-4 border-yellow-400' : 'hover:bg-white/10' }}">
-                        <i class="fas fa-file-alt ml-3 w-5"></i>
-                        <span>الاختبارات</span>
-                    </a>
-                    
-                    <a href="{{ route('assignments.index') }}" 
-                       class="flex items-center px-4 py-3 mt-1 transition-all duration-200 focus-ring {{ request()->routeIs('assignments.*') ? 'bg-white/10 border-r-4 border-yellow-400' : 'hover:bg-white/10' }}">
-                        <i class="fas fa-tasks ml-3 w-5"></i>
-                        <span>الواجبات</span>
-                    </a>
-                    
-                    <div class="px-4 py-2 text-xs font-semibold text-white/60 mt-6 uppercase tracking-wide">الإعدادات</div>
-                    
-                    <a href="#" class="flex items-center px-4 py-3 mt-1 hover:bg-white/10 transition-all duration-200 focus-ring">
-                        <i class="fas fa-cog ml-3 w-5"></i>
-                        <span>الإعدادات</span>
-                    </a>
-                    
-                    <a href="#" class="flex items-center px-4 py-3 mt-1 hover:bg-white/10 transition-all duration-200 focus-ring">
-                        <i class="fas fa-question-circle ml-3 w-5"></i>
-                        <span>المساعدة</span>
-                    </a>
-                    
-                    <!-- تسجيل الخروج -->
-                    <form method="POST" action="{{ route('logout') }}" class="mt-6 border-t border-white/20 pt-4">
-                        @csrf
-                        <button type="submit" class="flex items-center w-full px-4 py-3 mt-1 hover:bg-white/10 transition-all duration-200 focus-ring text-right">
-                            <i class="fas fa-sign-out-alt ml-3 w-5"></i>
-                            <span>تسجيل الخروج</span>
-                        </button>
-                    </form>
-                </nav>
+    <div class="px-4 py-2 text-xs font-semibold text-white/60 uppercase tracking-wide">القائمة الرئيسية</div>
+    
+    <a href="{{ route('dashboard') }}" 
+       class="flex items-center px-4 py-3 mt-1 transition-all duration-200 focus-ring {{ request()->routeIs('dashboard') ? 'bg-white/10 border-r-4 border-yellow-400' : 'hover:bg-white/10' }}">
+        <i class="fas fa-home ml-3 w-5"></i>
+        <span>لوحة التحكم</span>
+    </a>
+
+    <a href="{{ route('courses.index') }}" 
+       class="flex items-center px-4 py-3 mt-1 transition-all duration-200 focus-ring {{ request()->routeIs('courses.*') ? 'bg-white/10 border-r-4 border-yellow-400' : 'hover:bg-white/10' }}">
+        <i class="fas fa-book ml-3 w-5"></i>
+        <span>الدورات</span>
+    </a>
+
+    <a href="{{ route('lessons.index') }}" 
+       class="flex items-center px-4 py-3 mt-1 transition-all duration-200 focus-ring {{ request()->routeIs('lessons.*') ? 'bg-white/10 border-r-4 border-yellow-400' : 'hover:bg-white/10' }}">
+        <i class="fas fa-book ml-3 w-5"></i>
+        <span>الدروس</span>
+    </a>
+
+    <a href="{{ route('sessions.index') }}" 
+       class="flex items-center px-4 py-3 mt-1 transition-all duration-200 focus-ring {{ request()->routeIs('sessions.*') ? 'bg-white/10 border-r-4 border-yellow-400' : 'hover:bg-white/10' }}">
+        <i class="fas fa-video ml-3 w-5"></i>
+        <span>الحصص</span>
+    </a>
+
+    <a href="{{ route('teacher.groups.index') }}" 
+       class="flex items-center px-4 py-3 mt-1 transition-all duration-200 focus-ring {{ request()->routeIs('teacher.groups.*') ? 'bg-white/10 border-r-4 border-yellow-400' : 'hover:bg-white/10' }}">
+        <i class="fas fa-users ml-3 w-5"></i>
+        <span>المجموعات</span>
+    </a>
+
+    <a href="{{ route('exams.index') }}" 
+       class="flex items-center px-4 py-3 mt-1 transition-all duration-200 focus-ring {{ request()->routeIs('exams.*') ? 'bg-white/10 border-r-4 border-yellow-400' : 'hover:bg-white/10' }}">
+        <i class="fas fa-file-alt ml-3 w-5"></i>
+        <span>الاختبارات</span>
+    </a>
+
+    <a href="{{ route('assignments.index') }}" 
+       class="flex items-center px-4 py-3 mt-1 transition-all duration-200 focus-ring {{ request()->routeIs('assignments.*') ? 'bg-white/10 border-r-4 border-yellow-400' : 'hover:bg-white/10' }}">
+        <i class="fas fa-tasks ml-3 w-5"></i>
+        <span>الواجبات</span>
+    </a>
+
+    <!-- 📨 الرسائل -->
+    <a href="{{ route('teacher.contact.index') }}" 
+       class="flex items-center px-4 py-3 mt-1 transition-all duration-200 focus-ring {{ request()->routeIs('contact.*') ? 'bg-white/10 border-r-4 border-yellow-400' : 'hover:bg-white/10' }}">
+        <i class="fas fa-envelope ml-3 w-5"></i>
+        <span>الرسائل</span>
+    </a>
+
+    <div class="px-4 py-2 text-xs font-semibold text-white/60 mt-6 uppercase tracking-wide">الإعدادات</div>
+
+    <a href="#" class="flex items-center px-4 py-3 mt-1 hover:bg-white/10 transition-all duration-200 focus-ring">
+        <i class="fas fa-cog ml-3 w-5"></i>
+        <span>الإعدادات</span>
+    </a>
+
+    <a href="#" class="flex items-center px-4 py-3 mt-1 hover:bg-white/10 transition-all duration-200 focus-ring">
+        <i class="fas fa-question-circle ml-3 w-5"></i>
+        <span>المساعدة</span>
+    </a>
+
+    <!-- تسجيل الخروج -->
+    <form method="POST" action="{{ route('logout') }}" class="mt-6 border-t border-white/20 pt-4">
+        @csrf
+        <button type="submit" class="flex items-center w-full px-4 py-3 mt-1 hover:bg-white/10 transition-all duration-200 focus-ring text-right">
+            <i class="fas fa-sign-out-alt ml-3 w-5"></i>
+            <span>تسجيل الخروج</span>
+        </button>
+    </form>
+</nav>
+
             </div>
         </aside>
 
