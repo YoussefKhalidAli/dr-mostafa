@@ -416,6 +416,7 @@ private function saveAnswers(Request $request, $attempt)
 
 
 // 🟢 الطالب: عرض النتيجة
+
 public function result($id)
 {
     $exam = Exam::with(['questions.options'])->findOrFail($id);
@@ -424,21 +425,27 @@ public function result($id)
         ->where('student_id', Auth::id())
         ->first();
 
-    if (! $result) {
+    if (!$result) {
         abort(403, 'لم تقم بحل هذا الامتحان');
     }
 
-    // نجيب الإجابات الخاصة بالطالب + السؤال + الاختيارات
-    $answers = ExamAnswer::where('student_id', Auth::id())
-        ->whereIn('exam_question_id', $exam->questions->pluck('id'))
-        ->with([
-            'question.options',  // مهم: يجيب السؤال مع كل الاختيارات
-            'chosenOption',
-            'correctOption'
-        ])
-        ->get();
+    // نجيب كل الأسئلة مع إجابة الطالب إن وجدت
+    $questions = $exam->questions->map(function ($question) use ($result) {
+        $answer = $question->answers()
+            ->where('student_id', Auth::id())
+            ->first();
 
-    return view('student.exams.result', compact('exam', 'result', 'answers'));
+        $correctOption = $question->options->where('is_correct', 1)->first();
+
+        return [
+            'question' => $question,
+            'answer' => $answer,
+            'chosenOption' => $answer?->chosenOption,
+            'correctOption' => $correctOption,
+        ];
+    });
+
+    return view('student.exams.result', compact('exam', 'result', 'questions'));
 }
 
 public function attemptData($id)
