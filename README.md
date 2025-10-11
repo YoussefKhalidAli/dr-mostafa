@@ -1,61 +1,91 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ✅ Features Overview
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This document summarizes what **Students** and **Teachers** can and cannot do in the system,
+based on the passing feature tests.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 👨‍🏫 Teacher Capabilities
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### ✅ Can Do
+- View, create, edit, and delete **Assignments**.
+- Upload and delete assignment **files**.
+- View all **student submissions**, grades, and comments.
+- Update **student grades and feedback** (with optional file upload).
+- View **Chats** with students and mark unread messages as read.
+- Send messages to students.
+- View **Courses**, create new ones with images, update and delete them.
+- View **Dashboard** successfully.
+- Manage **Enrollments**:
+  - Approve, reject, or delete student enrollment requests.
+- Create and manage **Exams**:
+  - Add, edit, update, and delete **Exam Questions**.
+  - View student exam results with all questions and correct answers.
+- Manage **Groups**:
+  - View own groups.
+  - Create, update, and delete groups.
+  - Add and remove students from their groups.
+  - Approve or reject join requests.
+  - Search students.
+- Manage **Lessons**:
+  - Create lessons with files and video.
+  - View, edit, update, and delete lessons.
+- Manage **Sessions**:
+  - View, create, update, and delete sessions.
+- Manage **Contacts**:
+  - View, delete, and manage public contact messages.
+- Manage **Profile**:
+  - View, update, and delete their profile.
+  - Change password.
+- Access **Authentication** and **Registration**:
+  - Login, logout, register, verify email, reset password.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### ❌ Cannot Do
+- Access another teacher’s course, lesson, or group.
+- Modify or delete another teacher’s exams or questions.
+- Access unauthorized routes for students or guests.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 👨‍🎓 Student Capabilities
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### ✅ Can Do
+- Submit **Assignments** with text and/or files.
+- Resubmit assignments (with text or file).
+- View their own **submission results** after submission.
+- Send and receive **Messages** with teachers.
+- View **Available Courses**, **Lessons**, and **Sessions** if enrolled.
+- View **Exams** and their **Results** after taking them.
+- Submit **Enrollment requests** for courses.
+- Join **Groups** or send **Join Requests** to teachers.
+- View **Dashboard** and **Profile** pages.
+- Stream **Lesson Videos** if enrolled.
+- Access authentication routes (login, logout, registration, password reset).
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### ❌ Cannot Do
+- Submit the same assignment twice.
+- Submit an assignment without text or file.
+- Submit invalid file types.
+- View results without submitting.
+- Access assignments, exams, or lessons if not enrolled or not in a group.
+- Access teacher routes or manage other students.
+- Create or manage groups, courses, lessons, exams, or sessions.
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🧭 Guest User Restrictions
 
-### Premium Partners
+### ❌ Cannot Do
+- Access any course, group, enrollment, or lesson routes.
+- Perform any student or teacher actions.
+- Must authenticate to access the system.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+✅ **Total Tests Passed:** 141  
+⚙️ **Assertions:** 433  
+⏱️ **Duration:** 66.51s  
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**System Status:** 🟢 All features working as expected.
