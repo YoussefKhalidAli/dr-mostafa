@@ -46,7 +46,7 @@ class GroupSession extends Model
      */
     public function scopeLive($query)
     {
-        $now = Carbon::now()->addHours(3);
+        $now = Carbon::now();
         return $query->where('time', '<=', $now)
                     ->whereRaw('DATE_ADD(time, INTERVAL 1 HOUR) > ?', [$now]);
     }
@@ -56,7 +56,7 @@ class GroupSession extends Model
      */
     public function scopeUpcoming($query)
     {
-        $now = Carbon::now()->addHours(3);
+        $now = Carbon::now();
         return $query->where('time', '>', $now);
     }
 
@@ -65,7 +65,7 @@ class GroupSession extends Model
      */
     public function scopeCompleted($query)
     {
-        $now = Carbon::now()->addHours(3);
+        $now = Carbon::now();
         return $query->whereRaw('DATE_ADD(time, INTERVAL 1 HOUR) <= ?', [$now]);
     }
 

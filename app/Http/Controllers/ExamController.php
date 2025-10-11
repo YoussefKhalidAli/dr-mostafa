@@ -28,7 +28,7 @@ class ExamController extends Controller
 
     $exams = $query->get();
 
-    $now = now()->addHours(3);
+    $now = now();
 
     $upcomingExams = $exams->filter(fn($exam) => $exam->start_time && $exam->start_time > $now);
     $recentExams   = $exams->filter(fn($exam) =>
@@ -329,7 +329,7 @@ public function start($id)
             'student_id' => $student->id,
         ],
         [
-            'started_at' => now(), // إزالة addHours(3) لأنها قد تسبب مشاكل
+            'started_at' => now(), 
         ]
     );
 

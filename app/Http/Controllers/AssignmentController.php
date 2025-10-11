@@ -21,7 +21,7 @@ class AssignmentController extends Controller
             ->get();
 
         // تقسيم الواجبات
-        $now = Carbon::now()->addHours(3);
+        $now = Carbon::now();
         $upcoming = $assignments->filter(fn($a) => $a->deadline && $a->deadline->gt($now) && !$a->is_open);
         $open = $assignments->filter(fn($a) => $a->is_open && (!$a->deadline || $a->deadline->gte($now)));
         $past = $assignments->filter(fn($a) => $a->deadline && $a->deadline->lt($now));
@@ -48,7 +48,7 @@ class AssignmentController extends Controller
             ->get();
 
         // تقسيم الواجبات
-        $now = Carbon::now()->addHours(3);
+        $now = Carbon::now();
         $upcoming = $assignments->filter(fn($a) => $a->deadline && $a->deadline->gt($now) && !$a->is_open);
         $open = $assignments->filter(fn($a) => $a->is_open && (!$a->deadline || $a->deadline->gte($now)));
         $past = $assignments->filter(fn($a) => $a->deadline && $a->deadline->lt($now));

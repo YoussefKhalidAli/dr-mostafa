@@ -12,7 +12,7 @@
                 <p class="text-primary-200 text-lg">نتمنى لك يوماً دراسياً مثمراً ومفيداً</p>
                 <div class="flex items-center mt-3 text-primary-100">
                     <i class="fas fa-calendar ml-2"></i>
-                    <span>{{ \Carbon\Carbon::now()->addHours(3)->locale('ar')->translatedFormat('l، j F Y') }}</span>
+                    <span>{{ \Carbon\Carbon::now()->locale('ar')->translatedFormat('l، j F Y') }}</span>
                 </div>
             </div>
             <div class="hidden md:block">

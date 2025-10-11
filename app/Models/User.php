@@ -245,4 +245,13 @@ class User extends Authenticatable
     {
         return $query->where('role', 'student');
     }
+    public function chatsAsSender()
+{
+    return $this->hasMany(Chat::class, 'sender_id');
+}
+
+public function chatsAsReceiver()
+{
+    return $this->hasMany(Chat::class, 'receiver_id');
+}
 }

@@ -236,5 +236,27 @@ Route::prefix('/teacher/contact')->name('teacher.contact.')->middleware(['auth',
     Route::get('/{id}', [ContactController::class, 'show'])->name('show');
     Route::delete('/{id}', [ContactController::class, 'destroy'])->name('destroy');
 });
+use App\Http\Controllers\ChatController;
+
+// 🧑‍🏫 Teacher Chat Routes
+Route::middleware(['auth', 'role:teacher'])
+    ->prefix('teacher')
+    ->name('teacher.chat.')
+    ->group(function () {
+        Route::get('/chat', [ChatController::class, 'index'])->name('index');
+        Route::get('/chat/{student}', [ChatController::class, 'show'])->name('show');
+        Route::post('/chat/{student}', [ChatController::class, 'store'])->name('store');
+    });
+
+// 🧑‍🎓 Student Chat Routes
+Route::middleware(['auth', 'role:student'])
+    ->prefix('student')
+    ->name('student.chat.')
+    ->group(function () {
+        Route::get('/chat', [ChatController::class, 'index'])->name('index');
+        Route::post('/chat/send', [ChatController::class, 'store'])->name('store');
+    });
+
+
 
 require __DIR__.'/auth.php';

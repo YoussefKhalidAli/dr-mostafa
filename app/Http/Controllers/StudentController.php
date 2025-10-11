@@ -26,8 +26,8 @@ class StudentController extends Controller
             ->count();
 
         // حساب الجلسات لهذا الأسبوع (للمجموعات غير المحذوفة)
-        $startOfWeek = Carbon::now()->startOfWeek()->addHours(3);
-        $endOfWeek = Carbon::now()->endOfWeek()->addHours(3);
+        $startOfWeek = Carbon::now()->startOfWeek();
+        $endOfWeek = Carbon::now()->endOfWeek();
         
         $weeklySessionsCount = GroupSession::whereHas('group', function ($q) use ($studentId) {
                 $q->whereNull('deleted_at') // التأكد من أن المجموعة غير محذوفة
@@ -46,7 +46,7 @@ class StudentController extends Controller
                 });
             })
             ->with(['group.teacher'])
-            ->where('time', '>', Carbon::now()->addHours(3))
+            ->where('time', '>', Carbon::now())
             ->orderBy('time', 'asc')
             ->limit(4)
             ->get();
@@ -59,8 +59,8 @@ class StudentController extends Controller
                 });
             })
             ->with(['group.teacher'])
-            ->where('time', '<=', Carbon::now()->addHours(3))
-            ->where('time', '>=', Carbon::now()->addHours(3)->subHour()) // افترض أن الجلسة تستمر ساعة
+            ->where('time', '<=', Carbon::now())
+            ->where('time', '>=', Carbon::now()->subHour()) // افترض أن الجلسة تستمر ساعة
             ->first();
 
         // المجموعات المنضم إليها (أحدث 3 - غير محذوفة)

@@ -26,7 +26,7 @@
     use Carbon\Carbon;
 
     // التوقيت الحالي UTC +3 (مصر)
-    $now = \Carbon\Carbon::now()->addHours(3);
+    $now = \Carbon\Carbon::now();
 
     $liveSessions = $sessions->filter(function($session) use ($now) {
         $sessionTime = Carbon::parse($session->time);
