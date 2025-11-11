@@ -82,11 +82,11 @@ if (!function_exists('sign_bcdn_url')) {
 
         if($is_directory_token)
             {
-            return "{$url_scheme}://{$url_host}{$url_path}?token={$token}{$parameter_data_url}&expires={$expires}";
+            return "{$url_scheme}{$url_host}{$url_path}?token={$token}{$parameter_data_url}&expires={$expires}";
         }
         else 
             {
-            return "{$url_scheme}://{$url_host}/bcdn_token={$token}&expires={$expires}{$parameter_data_url}{$url_path}";
+            return "{$url_scheme}{$url_host}/bcdn_token={$token}&expires={$expires}{$parameter_data_url}{$url_path}";
         }
     }
 
